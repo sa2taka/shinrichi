@@ -1,45 +1,37 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, { useReducer } from 'react';
+import { TruthTable } from './components/TruthTable';
+import './App.css';
+import { TruthTableGenerator } from './libs/truthTableGenerator';
 
-function App() {
-  const [count, setCount] = useState(0)
+type ActionType =
+  | { type: 'addInput' }
+  | { type: 'addOutputName' }
+  | { type: 'addOutputValue' };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+function reducer(table: TruthTableGenerator, action: ActionType) {
+  switch (action.type) {
+    case 'addInput':
+      return new TruthTableGenerator(table.inputCount + 1, table.outputs);
+    case 'addOutputName':
+      return table;
+    case 'addOutputValue':
+      return table;
+  }
 }
 
-export default App
+function App() {
+  const [table, dispatch] = useReducer(reducer, new TruthTableGenerator());
+
+  return (
+    <div className="App container">
+      <TruthTable
+        table={table}
+        onAdditionalInput={() => {
+          dispatch({ type: 'addInput' });
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
