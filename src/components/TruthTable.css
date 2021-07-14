@@ -17,6 +17,7 @@ td {
 th.input:last-child,
 td.input:last-child {
   padding-right: 2em;
+  border-right: solid 1px black;
 }
 
 .btn {
