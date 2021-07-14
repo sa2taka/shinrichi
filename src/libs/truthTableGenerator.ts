@@ -6,7 +6,7 @@ export interface TruthTableColumn {
   values: boolean[];
 }
 
-const defaultOutputs = ['p | q', 'p & q', 'p ^ q', '!(p | q) | (p & q)'];
+const defaultOutputs = ['p | q', '!p & q', 'p ^ q'];
 export class TruthTableGenerator {
   #LETTERS = ['p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   #inputCount: number = 2;

@@ -1,9 +1,16 @@
+.table-warapper {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
 table {
   display: block;
   border-collapse: collapse;
   border-spacing: 0;
   padding: 48px;
   position: relative;
+  overflow: auto;
+  box-sizing: content-box;
 }
 thead tr th {
   border-bottom: solid 1px black;
@@ -12,6 +19,7 @@ thead tr th {
 th,
 td {
   padding: 0.2em 1em;
+  white-space: nowrap;
 }
 
 th.input:last-child,

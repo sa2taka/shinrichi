@@ -16,9 +16,11 @@ function reducer(table: TruthTableGenerator, action: ActionType) {
       }
       return new TruthTableGenerator(table.inputCount + 1, table.outputs);
     case 'addOutputName':
-      const output = table.outputs;
+      const output = table.outputs.slice();
       if (action.index) {
         output[action.index - table.inputCount] = action.value;
+      } else {
+        output.push('');
       }
       return new TruthTableGenerator(table.inputCount, output);
   }

@@ -14,7 +14,6 @@ export const TruthTable: React.VFC<Props> = ({
   onAdditionalInput,
   onAdditionalOutput,
 }) => {
-  console.log(table);
   return (
     <div className="table-warapper">
       <table>
@@ -64,7 +63,9 @@ export const TruthTable: React.VFC<Props> = ({
                     return (
                       <td
                         className={column.type}
-                        key={`row${i}_${column.name}`}
+                        key={`row${i}_${column.name}_${column.type}_${
+                          column.type === 'output' ? j - table.inputCount : j
+                        }`}
                         style={
                           column.type === 'input' &&
                           table.value[j + 1]?.type === 'output'
@@ -95,7 +96,7 @@ export const TruthTable: React.VFC<Props> = ({
       <button
         className="btn add-input-button"
         style={{ right: '64px' }}
-        onClick={onAdditionalInput}
+        onClick={() => onAdditionalOutput('')}
       >
         +
       </button>
