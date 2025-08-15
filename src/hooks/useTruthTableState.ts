@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from "react";
+import { useCallback, useReducer, useMemo } from "react";
 import { TruthTableGenerator } from "../libs/truthTableGenerator";
 
 interface TruthTableState {
@@ -136,10 +136,27 @@ export function useTruthTableState(initialInputCount = 2, initialOutputs = ["p |
     dispatch({ type: "SET_OUTPUTS", outputs });
   }, []);
 
+  // Get truth table values from the first output or create default
+  const truthTableValues = useMemo(() => {
+    if (state.outputs.length > 0 && state.outputs[0].trim() !== '') {
+      try {
+        const outputColumns = state.generator.getOutputColumns();
+        if (outputColumns.length > 0) {
+          return outputColumns[0].values;
+        }
+      } catch (error) {
+        console.error('Error getting truth table values:', error);
+      }
+    }
+    // Return default false values
+    return new Array(state.generator.valueCount).fill(false);
+  }, [state.generator, state.outputs]);
+
   return {
     generator: state.generator,
     inputCount: state.inputCount,
     outputs: state.outputs,
+    truthTableValues,
     actions: {
       addInput,
       removeInput,

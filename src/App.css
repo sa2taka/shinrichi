@@ -257,6 +257,497 @@
   font-weight: 500;
 }
 
+/* Mode Selector */
+.mode-selector {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.mode-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.mode-button:hover {
+  background: #f0f4ff;
+}
+
+.mode-button.active {
+  background: #667eea;
+  color: white;
+}
+
+/* Mode Actions */
+.mode-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.import-button {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.import-button:hover:not(:disabled) {
+  background: #1976d2;
+}
+
+.import-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Karnaugh Map Layout */
+.karnaugh-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/* Karnaugh Map Editor */
+.karnaugh-map-editor {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.karnaugh-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.variable-count-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.variable-count-control label {
+  font-weight: 600;
+  color: #333;
+}
+
+.variable-count-control select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.clear-button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.clear-button:hover {
+  background: #d32f2f;
+}
+
+/* Karnaugh Map Container */
+.karnaugh-map-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.variable-label {
+  position: absolute;
+  font-weight: 600;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.row-label {
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.col-label {
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Karnaugh Map Table */
+.karnaugh-map {
+  border-collapse: collapse;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  border: 2px solid #333;
+}
+
+.karnaugh-map .header-cell {
+  background: #f5f5f5;
+  border: 1px solid #333;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.karnaugh-map .corner-cell {
+  background: #eee;
+  border: 1px solid #333;
+  width: 60px;
+  height: 60px;
+}
+
+.karnaugh-cell {
+  border: 1px solid #333;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.karnaugh-cell:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.karnaugh-cell.active {
+  background: #4caf50 !important;
+  color: white;
+}
+
+.karnaugh-cell.inactive {
+  background: #f9f9f9;
+  color: #333;
+}
+
+.karnaugh-cell.dont-care {
+  background: #ffeb3b !important;
+  color: #333;
+}
+
+.cell-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0.2rem;
+}
+
+.cell-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.1rem;
+}
+
+.cell-conditions {
+  font-size: 0.7rem;
+  font-family: "Courier New", monospace;
+  color: #666;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+
+/* Group Legend */
+.group-legend {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.group-legend h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.group-legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.group-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.group-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #333;
+}
+
+.group-term {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+}
+
+.essential-badge {
+  background: #ff4444;
+  color: white;
+  padding: 0.15rem 0.4rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.group-cells {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Karnaugh Instructions */
+.karnaugh-instructions {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #e8f5e8;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.karnaugh-instructions h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2e7d32;
+}
+
+.karnaugh-instructions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.karnaugh-instructions li {
+  margin-bottom: 0.3rem;
+  color: #2e7d32;
+}
+
+/* Minimized Formula Display */
+.minimized-formula-display {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formula-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.formula-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.formula-content {
+  margin-bottom: 1.5rem;
+}
+
+.current-formula {
+  margin-bottom: 1.5rem;
+}
+
+.formula-type {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.formula-expression {
+  font-family: "Courier New", monospace;
+  font-size: 1.2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #667eea;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.formula .operator {
+  color: #e91e63;
+  font-weight: bold;
+  margin: 0 0.3rem;
+}
+
+.formula .main-operator {
+  color: #2196f3;
+  font-weight: bold;
+  margin: 0 0.5rem;
+}
+
+.formula .variable {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.formula .negated-variable {
+  color: #ff5722;
+}
+
+.formula .negation {
+  color: #f44336;
+  font-weight: bold;
+}
+
+.formula .pos-term .parenthesis {
+  color: #9c27b0;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.formula .constant-value {
+  color: #795548;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* Formula Statistics */
+.detailed-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f0f4ff;
+  border-radius: 6px;
+}
+
+.formula-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  color: #333;
+}
+
+.alternative-form {
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.alt-formula-type {
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.alt-formula-expression {
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  padding: 0.75rem;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Formula Actions */
+.formula-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.export-button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.export-button:hover {
+  background: #45a049;
+}
+
+/* Formula Help */
+.formula-help {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fff3e0;
+  border-radius: 8px;
+  border-left: 4px solid #ff9800;
+}
+
+.formula-help h4 {
+  margin: 0 0 0.5rem 0;
+  color: #e65100;
+}
+
+.formula-help ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.formula-help li {
+  margin-bottom: 0.3rem;
+  color: #bf360c;
+  line-height: 1.4;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   #root {
@@ -281,5 +772,28 @@
   .input-controls,
   .output-controls {
     justify-content: center;
+  }
+
+  .karnaugh-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .mode-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .karnaugh-map {
+    font-size: 0.9rem;
+  }
+
+  .karnaugh-cell {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cell-value {
+    font-size: 1.2rem;
   }
 }
