@@ -1,46 +1,30 @@
-import React, { useReducer } from 'react';
-import { TruthTable } from './components/TruthTable';
-import './App.css';
-import { TruthTableGenerator } from './libs/truthTableGenerator';
-import { generateReversePolish } from './libs/reversePolish';
-
-type ActionType =
-  | { type: 'addInput' }
-  | { type: 'addOutputName'; value: string; index?: number };
-
-function reducer(table: TruthTableGenerator, action: ActionType) {
-  switch (action.type) {
-    case 'addInput':
-      if (table.inputCount >= 4) {
-        return table;
-      }
-      return new TruthTableGenerator(table.inputCount + 1, table.outputs);
-    case 'addOutputName':
-      const output = table.outputs.slice();
-      if (action.index) {
-        output[action.index - table.inputCount] = action.value;
-      } else {
-        output.push('');
-      }
-      return new TruthTableGenerator(table.inputCount, output);
-  }
-}
+import { useState } from "react";
+import "./App.css";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 
 function App() {
-  const [table, dispatch] = useReducer(reducer, new TruthTableGenerator());
+  const [count, setCount] = useState(0);
 
   return (
-    <div className="App container">
-      <TruthTable
-        table={table}
-        onAdditionalInput={() => {
-          dispatch({ type: 'addInput' });
-        }}
-        onAdditionalOutput={(value, index) => {
-          dispatch({ type: 'addOutputName', value, index });
-        }}
-      />
-    </div>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+    </>
   );
 }
 
